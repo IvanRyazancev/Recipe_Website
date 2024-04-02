@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView, DeleteView
 
 from Recipe_website.forms import RecipeForm
 from recipe_webapp.models import Recipe
@@ -33,6 +35,10 @@ def signup(request):
         form = UserCreationForm()
     return render(request, 'regestration.html', {'form': form})
 
+def any_recipe(request):
+    recipes = Recipe.objects.order_by('?')[:5]
+    return render(request, 'any_recipe.html', {'recipes': recipes})
+
 def user_login(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
@@ -43,6 +49,19 @@ def user_login(request):
     else:
         form = AuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+class RecipeEditView(UpdateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'recipe_edit.html'
+
+    success_url = reverse_lazy('any_recipe')
+
+class RecipeDeleteView(DeleteView):
+    model = Recipe
+    template_name = 'delete_recipe.html'
+
+    success_url = reverse_lazy('any_recipe')
 
 @login_required
 def user_logout(request):

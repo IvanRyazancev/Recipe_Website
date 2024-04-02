@@ -19,7 +19,3 @@ class Category(models.Model):
 class RecipeCategory(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-
-# class User(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     username = models.OneToOneField(Recipe, on_delete=models.CASCADE)
