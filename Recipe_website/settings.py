@@ -26,9 +26,11 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_DOMAIN = 'ryazancev.pythonanywhere.com'
+
 
 ALLOWED_HOSTS = [
-    '192.168.0.11',
+    # '192.168.0.11',
     '127.0.0.1',
     'Ryazancev.pythonanywhere.com',
 ]
@@ -47,7 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'recipe_webapp',
-    'debug_toolbar',
+    # 'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -82,8 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Recipe_website.wsgi.application'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -141,10 +142,11 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static/',
 ]
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_ROOT = BASE_DIR / 'static_files/'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/recipe_images/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

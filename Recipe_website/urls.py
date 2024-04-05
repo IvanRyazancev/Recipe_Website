@@ -35,7 +35,7 @@ urlpatterns = [
     path('recipe/delete/<int:pk>/', RecipeDeleteView.as_view(), name='recipe_delete'),
     path('edit_recipe/<int:recipe_id>/', views.edit_recipe, name='edit_recipe'),
     # path('__debug__/', include("debug_toolbar.urls")),
-    path('Recipe_website/', include('recipe_webapp.urls')),
+    # path('Recipe_website/', include('recipe_webapp.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
